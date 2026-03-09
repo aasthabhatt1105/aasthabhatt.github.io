@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aastha Bhatt | Space Systems & Satellite Communications</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Aastha Bhatt, Space Systems & Satellite Communications Engineer." />
+  <style>
+    :root {
+      --bg: #020817;
+      --bg-alt: #050b20;
+      --accent: #5fd1ff;
+      --accent-soft: rgba(95, 209, 255, 0.25);
+      --text-main: #e5f1ff;
+      --text-muted: #9fb3d9;
+      --card-bg: rgba(8, 15, 40, 0.95);
+      --border-subtle: rgba(95, 209, 255, 0.25);
+      --chip-bg: rgba(16, 100, 160, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 10% 0%, #1b1f3b 0, #020817 45%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Starfield background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.5) 50%, transparent 51%),
+        radial-gradient(1px 1px at 80% 30%, rgba(95,209,255,0.7) 50%, transparent 51%),
+        radial-gradient(1px 1px at 50% 80%, rgba(255,255,255,0.4) 50%, transparent 51%),
+        radial-gradient(2px 2px at 20% 70%, rgba(148, 163, 255, 0.6) 50%, transparent 51%);
+      opacity: 0.55;
+      z-index: -2;
+    }
+
+    .orbit {
+      position: fixed;
+      inset: -10%;
+      border-radius: 50%;
+      border: 1px dashed rgba(95,209,255,0.06);
+      transform: rotate(15deg);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .orbit.orbit-2 {
+      inset: -30%;
+      opacity: 0.4;
+      transform: rotate(-12deg);
+    }
+
+    .orbit.orbit-3 {
+      inset: -50%;
+      opacity: 0.25;
+      transform: rotate(30deg);
+    }
+
+    header {
+      border-bottom: 1px solid var(--border-subtle);
+      background: linear-gradient(to bottom, rgba(2,8,23,0.95), rgba(2,8,23,0.6));
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(20px);
+    }
+
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-orbit {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(95,209,255,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 12px rgba(95,209,255,0.6);
+      background: radial-gradient(circle at 30% 0, #5fd1ff, #020817 65%);
+    }
+
+    .logo-orbit span {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: #020817;
+      border: 2px solid #c4e4ff;
+    }
+
+    .nav-title {
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 1rem;
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, #5fd1ff, #38bdf8);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 1.75rem auto 3rem;
+      padding: 0 1.25rem 3rem;
+      position: relative;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 255, 0.35);
+      box-shadow: 0 26px 60px rgba(15,23,42,0.85);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.24), transparent 55%);
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      padding: 1.6rem 1.6rem 1.9rem;
+      z-index: 1;
+    }
+
+    .hero-header {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .avatar-wrap {
+      width: 120px;
+      height: 120px;
+      border-radius: 28px;
+      padding: 2px;
+      background: conic-gradient(from 200deg, #5fd1ff, #38bdf8, #0f172a, #5b21b6, #5fd1ff);
+      box-shadow:
+        0 0 0 1px rgba(15,23,42,1),
+        0 20px 45px rgba(15,23,42,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 2px solid rgba(15,23,42,0.9);
+      background: #020617 center/cover no-repeat;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(1.7rem, 2vw + 1rem, 2.2rem);
+      letter-spacing: 0.03em;
+    }
+
+    .hero-subtitle {
+      color: var(--accent);
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-meta {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span {
+      margin-right: 0.75rem;
+    }
+
+    .hero-meta strong {
+      font-weight: 500;
+      color: #e2f3ff;
+    }
+
+    .hero-actions {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.85rem;
+      border: 1px solid rgba(148,163,255,0.6);
+      color: var(--text-main);
+      background: radial-gradient(circle at 20% 0, rgba(56,189,248,0.4), rgba(15,23,42,0.95));
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      box-shadow: 0 14px 30px rgba(15,23,42,0.85);
+    }
+
+    .btn.secondary {
+      background: rgba(15,23,42,0.96);
+      border-color: rgba(148,163,255,0.4);
+      box-shadow: 0 10px 25px rgba(15,23,42,0.9);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 34px rgba(15,23,42,0.95);
+      border-color: rgba(94,234,212,0.8);
+    }
+
+    .btn span.icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,255,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+    }
+
+    .hero-pill {
+      margin-top: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,255,0.32);
+      background: rgba(15,23,42,0.95);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.3);
+    }
+
+    .hero-pill span.label {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      color: #bfdbfe;
+    }
+
+    .section {
+      margin-top: 1.6rem;
+      padding-top: 1.3rem;
+      border-top: 1px solid rgba(148,163,255,0.3);
+    }
+
+    .section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: linear-gradient(to right, var(--accent), transparent);
+    }
+
+    .section p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .badge-row {
+      margin-top: 0.7rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      font-size: 0.78rem;
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,255,0.35);
+      background: rgba(15,23,42,0.95);
+      color: #dbeafe;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1.15rem;
+      margin-top: 0.3rem;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 4px;
+      bottom: 4px;
+      border-left: 1px dashed rgba(148,163,255,0.5);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 1.45rem;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 0;
+      top: 0.35rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #5fd1ff;
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.25);
+    }
+
+    .timeline-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-role {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .timeline-org {
+      font-size: 0.85rem;
+      color: #bfdbfe;
+    }
+
+    .timeline-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-body {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    .timeline-body ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.25rem;
+    }
+
+    .timeline-body li {
+      position: relative;
+      padding-left: 0.9rem;
+      margin-top: 0.15rem;
+    }
+
+    .timeline-body li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 0.24rem 0.6rem;
+      border-radius: 999px;
+      background: var(--chip-bg);
+      color: #e0f2fe;
+      border: 1px solid rgba(56,189,248,0.55);
+    }
+
+    .side-card {
+      background: rgba(8, 15, 40, 0.94);
+      border-radius: 18px;
+      border: 1px solid rgba(56,189,248,0.4);
+      padding: 1.5rem 1.6rem 1.8rem;
+      box-shadow: 0 24px 55px rgba(15,23,42,0.95);
+      position: sticky;
+      top: 4.7rem;
+    }
+
+    @media (max-width: 900px) {
+      .side-card {
+        position: static;
+        margin-top: 0.75rem;
+      }
+    }
+
+    .side-heading {
+      font-size: 0.92rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .constellation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0.7rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .chip {
+      border-radius: 13px;
+      padding: 0.55rem 0.7rem;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(148,163,255,0.4);
+    }
+
+    .chip-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #bfdbfe;
+      margin-bottom: 0.15rem;
+    }
+
+    .chip-body {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .langs {
+      display: grid;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .langs span {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .footer {
+      max-width: 1080px;
+      margin: 0 auto 1.6rem;
+      padding: 0 1.25rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer span:last-child {
+      text-align: right;
+    }
+
+    @media (max-width: 640px) {
+      .hero-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .avatar-wrap {
+        width: 110px;
+        height: 110px;
+      }
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer span:last-child {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="orbit"></div>
+  <div class="orbit orbit-2"></div>
+  <div class="orbit orbit-3"></div>
+
+  <header>
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="logo-orbit"><span></span></div>
+        <div class="nav-title">Aastha Bhatt · Orbit Log</div>
+      </div>
+      <div class="nav-links">
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#research">Research</a>
+        <a href="#skills">Skills</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="layout">
+      <!-- Left column: main content -->
+      <article class="card">
+        <div class="card-inner">
+          <!-- Hero -->
+          <div class="hero-header">
+            <div class="avatar-wrap">
+              <div class="avatar">
+                <!-- Replace profile.jpg with your actual file name if different -->
+                <img src="profile.jpg" alt="Portrait of Aastha Bhatt in front of satellite dishes" />
+              </div>
+            </div>
+            <div class="hero-text">
+              <div class="hero-subtitle">Space Systems & Satellite Communications</div>
+              <h1>Aastha Bhatt</h1>
+              <div class="hero-meta">
+                <span><strong>Illkirch‑Graffenstaden</strong>, France</span>
+                <span>Master in Space Studies · International Space University</span>
+              </div>
+              <div class="hero-actions">
+                <a class="btn" href="mailto:aasthsabhatt10@gmail.com">
+                  <span class="icon">✉</span>
+                  <span>Contact</span>
+                </a>
+                <a class="btn secondary" href="https://www.linkedin.com/in/aastha-bhatt-294286215/" target="_blank" rel="noreferrer">
+                  <span class="icon">in</span>
+                  <span>LinkedIn</span>
+                </a>
+                <a class="btn secondary" href="https://github.com/aasthabhatt1105" target="_blank" rel="noreferrer">
+                  <span class="icon">⚙</span>
+                  <span>GitHub</span>
+                </a>
+              </div>
+              <div class="hero-pill">
+                <span class="hero-pill-dot"></span>
+                <span class="label">Currently in orbit</span>
+                <span>Space engineering, optical comms & ground segment systems</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- About -->
+          <section class="section">
+            <h2 class="section-title">Mission profile</h2>
+            <p>
+              Space systems engineer specializing in satellite communications, optical <strong>link</strong> architectures, and ground station technologies, with experience across embedded hardware, data analysis, and mission‑driven software.[file:1]
+            </p>
+            <p style="margin-top:0.55rem;">
+              I enjoy designing end‑to‑end systems—from PAT electronics for quantum communication to Martian rover concepts and CubeSat payloads—and translating complex requirements into robust, testable implementations.[file:1]
+            </p>
+            <div class="badge-row">
+              <span class="badge">Satellite & optical communications</span>
+              <span class="badge">Embedded & power electronics</span>
+              <span class="badge">Atmospheric & EO data analysis</span>
+            </div>
+          </section>
+
+          <!-- Experience -->
+          <section class="section" id="experience">
+            <h2 class="section-title">Flight log · Experience</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-heading">
+                  <div>
+                    <div class="timeline-role">Project Trainee · Atmospheric Science</div>
+                    <div class="timeline-org">Physical Research Laboratory (PRL), India</div>
+                  </div>
+                  <div class="timeline-meta">Jan 2024 – Apr 2024</div>
+                </div>
+                <div class="timeline-body">
+                  <ul>
+                    <li>Synthesized multi‑source atmospheric datasets from ECMWF, MOSDAC, and NASA EarthData using MATLAB to derive vertical profiles.[file:1]</li>
+                    <li>Performed trend analysis on Lidar, Radiosonde, and Ceilometer data for long‑term space‑based atmospheric studies.[file:1]</li>
+                    <li>Automated data pipelines for high‑volume satellite telemetry, reducing manual analysis time for trend detection.[file:1]</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-heading">
+                  <div>
+                    <div class="timeline-role">Research Trainee · Quantum Communications</div>
+                    <div class="timeline-org">Space Applications Centre, ISRO, India</div>
+                  </div>
+                  <div class="timeline-meta">Aug 2023 – Nov 2023</div>
+                </div>
+                <div class="timeline-body">
+                  <ul>
+                    <li>Architected a Pointing, Acquisition, and Tracking (PAT) electronics driver for satellite‑based quantum communication using STM32.[file:1]</li>
+                    <li>Integrated precision DAC/ADC and DC‑DC converters to improve pointing accuracy for inter‑satellite optical links.[file:1]</li>
+                    <li>Developed real‑time control firmware to stabilize feedback loops for QKD payload operations.[file:1]</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-heading">
+                  <div>
+                    <div class="timeline-role">Intern · Power Electronics</div>
+                    <div class="timeline-org">Aartronix Innovations Pvt. Ltd, India</div>
+                  </div>
+                  <div class="timeline-meta">Feb 2023 – May 2023</div>
+                </div>
+                <div class="timeline-body">
+                  <ul>
+                    <li>Simulated power factor correction (PFC) topologies in MATLAB/Simulink to enhance subsystem power efficiency.[file:1]</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Projects -->
+          <section class="section" id="projects">
+            <h2 class="section-title">Payloads & projects</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-heading">
+                  <div class="timeline-role">PAT System for Satellite Quantum Links</div>
+                  <div class="timeline-meta">STM32 · DAC/ADC · DC‑DC</div>
+                </div>
+                <div class="timeline-body">
+                  Designed and implemented an electronics driver to control pointing for satellite‑based quantum communication, integrating high‑precision converters to enhance optical link stability.[file:1]
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-heading">
+                  <div class="timeline-role">Martian Rover & Drone Concept</div>
+                  <div class="timeline-meta">3D lava‑tube mapping · Seismic & spectroscopy</div>
+                </div>
+                <div class="timeline-body">
+                  Team project for 3D mapping of Martian lava tubes using a rover‑drone system with seismic sensing and spectroscopy to detect minerals and potential biosignatures.[file:1]
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-heading">
+                  <div class="timeline-role">1U CubeSat for Environmental Monitoring</div>
+                  <div class="timeline-meta">Mission design · Payload & bus</div>
+                </div>
+                <div class="timeline-body">
+                  Developed a 1U CubeSat concept focused on environmental monitoring, including payload definition and key subsystem considerations.[file:1]
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-heading">
+                  <div class="timeline-role">Ground Station Software</div>
+                  <div class="timeline-meta">Link operations · Telemetry</div>
+                </div>
+                <div class="timeline-body">
+                  Built software to manage ground station transmission and reception workflows, supporting satellite data handling and pass operations.[file:1]
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-heading">
+                  <div class="timeline-role">Embedded & Robotics Projects</div>
+                  <div class="timeline-meta">Security · Mobility</div>
+                </div>
+                <div class="timeline-body">
+                  Developed a fingerprint‑based door locking system using the R305 sensor and created robotic cars controlled via Bluetooth gestures and voice commands.[file:1]
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Research -->
+          <section class="section" id="research">
+            <h2 class="section-title">Research & reviews</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-heading">
+                  <div class="timeline-role">Satellite Ground Station Architecture</div>
+                  <div class="timeline-meta">SDR · tracking · RF</div>
+                </div>
+                <div class="timeline-body">
+                  Conducted a technical review of high‑frequency propagation, SDR‑based ground stations, and automated tracking algorithms to improve SNR during LEO passes.[file:1]
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-heading">
+                  <div class="timeline-role">Hydrogen Fuel Cells for Mobility</div>
+                  <div class="timeline-meta">PEM · power density</div>
+                </div>
+                <div class="timeline-body">
+                  Analyzed chemical kinetics and power density of hydrogen fuel cells, assessing PEM feasibility for heavy‑duty transport and future planetary surface mobility.[file:1]
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-heading">
+                  <div class="timeline-role">PFC Topologies & Satellite Power</div>
+                  <div class="timeline-meta">Boost · interleaved · THD</div>
+                </div>
+                <div class="timeline-body">
+                  Compared Boost and interleaved PFC converter topologies via MATLAB/Simulink, validating efficiency gains and THD reduction for satellite power conditioning units.[file:1]
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-heading">
+                  <div class="timeline-role">Earth Observation & Atmospheric Trends</div>
+                  <div class="timeline-meta">Lidar · Radiosonde · Ceilometer</div>
+                </div>
+                <div class="timeline-body">
+                  Published work on fusing multi‑instrument observations to derive vertical atmospheric profiles and study aerosol‑cloud interactions for climate modeling.[file:1]
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Skills -->
+          <section class="section" id="skills">
+            <h2 class="section-title">Systems & skills</h2>
+            <div class="pill-row">
+              <span class="pill">MBSE · Cameo Systems Modeler</span>
+              <span class="pill">Satellite link budgeting</span>
+              <span class="pill">PAT systems</span>
+              <span class="pill">RF engineering</span>
+              <span class="pill">Sensors & actuators</span>
+              <span class="pill">STM32 · Arduino · Raspberry Pi</span>
+              <span class="pill">Altium · KiCAD</span>
+              <span class="pill">Power electronics</span>
+              <span class="pill">MATLAB · Simulink</span>
+              <span class="pill">GNU Radio</span>
+              <span class="pill">Keil uVision · CubeMX</span>
+              <span class="pill">STK</span>
+              <span class="pill">Satellite telemetry analysis</span>
+              <span class="pill">Radiosonde · Lidar · Ceilometer</span>
+              <span class="pill">TopCAT · ArcGIS · QGIS</span>
+            </div>
+          </section>
+        </div>
+      </article>
+
+      <!-- Right column: quick facts -->
+      <aside class="side-card">
+        <div class="side-heading">Orbit summary</div>
+        <div class="constellation-grid">
+          <div class="chip">
+            <div class="chip-title">Current program</div>
+            <div class="chip-body">
+              Master in Space Studies, specialization in Space Engineering and Applications, International Space University, France.[file:1]
+            </div>
+          </div>
+          <div class="chip">
+            <div class="chip-title">Previous degree</div>
+            <div class="chip-body">
+              B.E. in Electronics and Communication, V.V.P. Engineering College, India (CGPA 9.66/10).[file:1]
+            </div>
+          </div>
+          <div class="chip">
+            <div class="chip-title">Focus areas</div>
+            <div class="chip-body">
+              Advanced semiconductor & optoelectronics, satellite technology, propulsion, ground stations, remote sensing.[file:1]
+            </div>
+          </div>
+          <div class="chip">
+            <div class="chip-title">Interests</div>
+            <div class="chip-body">
+              Space robotics, Martian exploration, optical comms, sustainable space systems.
+            </div>
+          </div>
+        </div>
+
+        <div class="side-heading">Languages</div>
+        <div class="langs">
+          <span><span>English</span><span>Fluent</span></span>
+          <span><span>French</span><span>Good</span></span>
+          <span><span>Gujarati</span><span>Native</span></span>
+          <span><span>Hindi</span><span>Fluent</span></span>
+        </div>
+
+        <div class="side-heading">Download CV</div>
+        <p style="font-size:0.82rem;color:var(--text-muted);">
+          For a full academic and technical history, you can download my latest CV as a PDF.
+        </p>
+        <!-- Update this href to the actual CV file in your repo, e.g., docs/Aastha_Bhatt_CV.pdf -->
+        <a class="btn" style="margin-top:0.7rem;" href="Aastha_Bhatt_CV.pdf" target="_blank" rel="noreferrer">
+          <span class="icon">↓</span>
+          <span>Download CV</span>
+        </a>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> Aastha Bhatt.</span>
+    <span>Hosted on GitHub Pages · <a href="https://github.com/aasthabhatt1105" target="_blank" rel="noreferrer">aasthabhatt1105</a></span>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
