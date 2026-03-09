@@ -663,7 +663,36 @@
 </style>
 <body>
   <div class="orbit"></div>
-  <div class="orbit orbit-2"></div>
+  <
+    
+  /* Language Switcher */
+  .language-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  .language-switcher select {
+    background: var(--card-bg);
+    color: var(--text-main);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .language-switcher select:hover {
+    background: var(--accent-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--accent-soft);
+  }
+  .language-switcher select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }div class="orbit orbit-2"></div>
   <div class="orbit orbit-3"></div>
 
   
@@ -698,7 +727,15 @@
     <section class="layout">
       <!-- Left column: main content -->
       <article class="card">
-        <div class="card-inner">
+        
+        
+<!-- Language Switcher -->
+<div class="language-switcher">
+  <select id="language-selector" onchange="switchLanguage(this.value)">
+    <option value="en">English</option>
+    <option value="fr">Français</option>
+  </select>
+</div><div class="card-inner">
           <!-- Hero -->
           <div class="hero-header">
             <div class="avatar-wrap">
@@ -1014,6 +1051,15 @@
       setTimeout(() => loader.style.display = 'none', 500);
     }, 1500);
   });
+
+    // Language Switcher Function
+  function switchLanguage(lang) {
+    if (lang === 'fr') {
+      window.location.href = 'index-fr.html';
+    } else {
+      window.location.href = 'index.html';
+    }
+  }
 </script>
 </body>
 </html>
