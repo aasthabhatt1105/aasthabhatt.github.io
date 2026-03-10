@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aastha Bhatt - Flight Record (Resume)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    
+    <style>
+        .resume-container {
+            max-width: 900px;
+            margin: 100px auto 50px auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .resume-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .resume-header h1 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .contact-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-family: var(--font-sys);
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+        
+        .contact-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .resume-section {
+            margin-bottom: 3rem;
+        }
+        
+        .resume-section h2 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .resume-section h2::before {
+            content: "";
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            box-shadow: 0 0 8px var(--secondary-glow);
+        }
+        
+        .resume-item {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--glass-border);
+            position: relative;
+        }
+        
+        .resume-item::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--bg-space);
+            border: 2px solid var(--accent);
+        }
+        
+        .resume-item h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .item-meta {
+            font-family: var(--font-sys);
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .resume-item ul {
+            list-style: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+        
+        .resume-item li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        
+        .resume-item li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--text-main);
+            opacity: 0.7;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Background Elements -->
+    <canvas id="starfield"></canvas>
+    <div class="space-dust"></div>
+    <div class="glass-overlay"></div>
+
+    <header class="hud-header">
+      <nav class="nav container">
+        <div class="nav-left">
+          <div class="logo-orbit type-writer">sys.log("Resume_Data");</div>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link" data-text="← RETURN_TO_BASE">← RETURN_TO_BASE</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container resume-container glass-card">
+        <div class="resume-header">
+            <h1>AASTHA BHATT</h1>
+            <div class="status-text" style="font-size: 1rem;">Space Systems Engineer</div>
+            
+            <div class="contact-links">
+                <a href="mailto:aasthabhatt1105@gmail.com"><i class="fa-solid fa-envelope"></i> aasthabhatt1105@gmail.com</a>
+                <a href="https://linkedin.com/in/aasthabhatt" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/aasthabhatt1105" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <h2>Professional Summary</h2>
+            <p style="color: var(--text-muted); font-size: 1.05rem;">
+                Space Systems Engineering student at the International Space University with expertise in Mars rover and drone systems design, satellite communication systems, and AI applications in aerospace. Experienced in designing power management systems, communication links, and autonomous payloads for planetary exploration. Strong background in electronics engineering with hands-on experience at ISRO and PRL.
+            </p>
+        </div>
+
+        <div class="resume-section">
+            <h2>Education</h2>
+            <div class="resume-item">
+                <h3>Master of Space Studies</h3>
+                <div class="item-meta">International Space University (ISU), Strasbourg, France | 2024 - Present</div>
+                <ul>
+                    <li>Specialization: Space Systems Engineering</li>
+                    <li>Focus areas: Mars robotics, satellite communications, and AI in aerospace</li>
+                    <li>Projects: Mars rover and drone system design, AI Orbital Data Centers research</li>
+                </ul>
+            </div>
+            <div class="resume-item">
+                <h3>Bachelor of Technology in Electronics and Communication Engineering</h3>
+                <div class="item-meta">Graduated</div>
+                <ul>
+                    <li>Strong foundation in electronics, circuit design, and signal processing</li>
+                    <li>Coursework in embedded systems, communication theory, and control systems</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <h2>Professional Experience</h2>
+            <div class="resume-item">
+                <h3>Space Systems Engineering Intern</h3>
+                <div class="item-meta">Indian Space Research Organisation (ISRO) | India</div>
+                <ul>
+                    <li>Contributed to satellite communication system design and analysis</li>
+                    <li>Worked on ground station development and link budget calculations</li>
+                    <li>Participated in mission planning and system engineering activities</li>
+                </ul>
+            </div>
+            <div class="resume-item">
+                <h3>Research Intern</h3>
+                <div class="item-meta">Physical Research Laboratory (PRL) | India</div>
+                <ul>
+                    <li>Conducted research on space instrumentation and sensor systems</li>
+                    <li>Developed electronic circuits and PCB designs for space applications</li>
+                    <li>Analyzed data from spectrometry and remote sensing instruments</li>
+                </ul>
+            </div>
+            <div class="resume-item">
+                <h3>Banking Intern</h3>
+                <div class="item-meta">BNP Paribas | France</div>
+                <ul>
+                    <li>Gained experience in financial systems and data analysis</li>
+                    <li>Developed understanding of international business operations</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <h2>Projects & Research</h2>
+            <div class="resume-item">
+                <h3>AI Orbital Data Centers for Environmental Monitoring</h3>
+                <div class="item-meta">International Space University | 2024</div>
+                <ul>
+                    <li>Designed compact satellite system for environmental monitoring using AI</li>
+                    <li>Analyzed multi-source atmospheric data from ECMWf, MOSDAC, and NASA</li>
+                    <li>Developed system architecture for autonomous orbital data processing</li>
+                </ul>
+            </div>
+            <div class="resume-item">
+                <h3>iU CubeSat for Environmental Monitoring</h3>
+                <div class="item-meta">International Space University | 2024</div>
+                <ul>
+                    <li>Designed compact satellite system specifically for environmental data collection</li>
+                    <li>Integrated multiple sensors and communication subsystems</li>
+                    <li>Performed link budget analysis and power system optimization</li>
+                </ul>
+            </div>
+            <div class="resume-item">
+                <h3>Mars Rover and Drone System Design</h3>
+                <div class="item-meta">ISU Team Project | 2024-2025</div>
+                <ul>
+                    <li>Lead design of communication subsystem using S, X, and Ka bands</li>
+                    <li>Developed power management system with solar panels and battery optimization</li>
+                    <li>Integrated LiDAR, spectrometry, and autonomous navigation payloads</li>
+                    <li>Created PCB schematics using Altium Designer and KiCAD</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="project-card glass-card small" style="padding: 1rem;">
+                    <h4 style="color: #fff; margin-bottom: 0.5rem;">Software & Tools</h4>
+                    <p style="font-size: 0.85rem;">Altium Designer, KiCAD, GNU Radio, MATLAB, Python, Cameo Systems Modeller, Circuit Designer, Arduino IDE</p>
+                </div>
+                <div class="project-card glass-card small" style="padding: 1rem;">
+                    <h4 style="color: #fff; margin-bottom: 0.5rem;">Space Systems</h4>
+                    <p style="font-size: 0.85rem;">Satellite communication, Link budget analysis, Power system design, Payload integration, System engineering</p>
+                </div>
+                <div class="project-card glass-card small" style="padding: 1rem;">
+                    <h4 style="color: #fff; margin-bottom: 0.5rem;">Aerospace Engineering</h4>
+                    <p style="font-size: 0.85rem;">Mars robotics, Planetary exploration systems, Autonomous navigation, Space-grade electronics, Remote sensing</p>
+                </div>
+                <div class="project-card glass-card small" style="padding: 1rem;">
+                    <h4 style="color: #fff; margin-bottom: 0.5rem;">Electronics & Prog.</h4>
+                    <p style="font-size: 0.85rem;">PCB design, Embedded C (STM32, ESP32), Signal processing, Microcontroller programming</p>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    
+    <footer class="cyber-footer">
+        <div class="container footer-content">
+          <div class="system-status">SYS.STAT: NOMINAL</div>
+          <div class="copyright">© 2026 Aastha Bhatt. Hosted on GitHub Pages.</div>
+        </div>
+    </footer>
+
+    <!-- Use the same script for the background -->
+    <script src="script.js"></script>
+</body>
+</html>
